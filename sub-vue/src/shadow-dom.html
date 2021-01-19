@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Shadow DOM 实现样式隔离</title>
+  </head>
+  <body>
+    <p>我是body下的p标签</p>
+    <div id="shadow"></div>
+    <script>
+      const shadow = document.querySelector('#shadow')
+      const shadowDom = shadow.attachShadow({mode: 'open'});
+      const pElm = document.createElement('p');
+      pElm.innerHTML = 'hello shadow';
+      const styleElm = document.createElement('style');
+      styleElm.textContent = `p{color:red}`;
+      shadowDom.appendChild(styleElm);
+      shadowDom.appendChild(pElm);
+    </script>
+  </body>
+</html>
